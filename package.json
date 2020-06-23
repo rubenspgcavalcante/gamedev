@@ -1,0 +1,33 @@
+{
+  "name": "imersao-gamedev",
+  "version": "1.0.0",
+  "description": "\"Game developed on Imersao Gamedev\"",
+  "main": "docs/index.js",
+  "scripts": {
+    "build": "NODE_ENV=production webpack",
+    "build:dev": "NODE_ENV=development webpack",
+    "start:dev": "NODE_ENV=development webpack-dev-server --hot"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rubenspgcavalcante/imersao-gamedev.git"
+  },
+  "author": "Rubens Pinheiro Goncalves Cavalcante",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rubenspgcavalcante/imersao-gamedev/issues"
+  },
+  "homepage": "https://github.com/rubenspgcavalcante/imersao-gamedev#readme",
+  "dependencies": {
+    "p5": "^1.0.0"
+  },
+  "devDependencies": {
+    "css-loader": "^3.6.0",
+    "file-loader": "^6.0.0",
+    "html-webpack-plugin": "^4.3.0",
+    "style-loader": "^1.2.1",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0"
+  }
+}
