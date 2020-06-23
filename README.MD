@@ -1,5 +1,7 @@
 # Imersão GameDev Alura
 
+Veja em [https://rubenspgcavalcante.github.io/gamedev](https://rubenspgcavalcante.github.io/gamedev)
+
 ## Como rodar localmente:
 
 1. Instale o [NodeJS](https://nodejs.org/en/download/)
