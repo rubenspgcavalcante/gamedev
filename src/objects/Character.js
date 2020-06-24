@@ -1,5 +1,6 @@
 import getGame from "../game";
 import charSprites from "../images/character/running.png";
+import { animationFactory } from "../factories/animation-factory";
 
 export default class Character {
   static charImg = null;
@@ -21,35 +22,22 @@ export default class Character {
 
     this.colSize = Math.floor(Character.charImg.width / this.sizeX);
     this.lineSize = Math.floor(Character.charImg.height / this.sizeY);
-  }
 
-  draw() {
-    const game = getGame();
-    const { currFrame, colSize, sizeX, sizeY, charHeight, charWidth } = this;
-
-    let x = (currFrame % colSize) * sizeX;
-    let y = Math.floor(currFrame / colSize) * sizeY;
-
-    game.image(
+    this.animator = animationFactory(
       Character.charImg,
       0,
-      game.height - charHeight,
-      charWidth,
-      charHeight,
-      x,
-      y,
+      this.charHeight,
+      this.charWidth,
       sizeX,
       sizeY
     );
+  }
 
-    this.animate();
+  draw() {
+    this.animator.draw();
   }
 
   animate() {
-    this.currFrame++;
-
-    if (this.currFrame === this.colSize * this.lineSize - 1) {
-      this.currFrame = 0;
-    }
+    this.animator.animate();
   }
 }
