@@ -3,6 +3,7 @@ const path = require("path");
 
 module.exports = () => ({
   mode: process.env.NODE_ENV,
+  devtool: "sourcemap",
   entry: "./src/index.js",
   output: {
     path: path.resolve(__dirname, "./docs"),
@@ -15,6 +16,17 @@ module.exports = () => ({
   },
   module: {
     rules: [
+      {
+        test: /\.m?js$/,
+        exclude: /(node_modules|bower_components)/,
+        use: {
+          loader: "babel-loader",
+          options: {
+            presets: ["@babel/preset-env"],
+            plugins: ["@babel/plugin-proposal-class-properties"],
+          },
+        },
+      },
       {
         test: /\.css$/i,
         use: ["style-loader", "css-loader"],

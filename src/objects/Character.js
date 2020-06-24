@@ -1,36 +1,37 @@
+import getGame from "../game";
+import charSprites from "../images/character/running.png";
+
 export default class Character {
-  constructor(game, img, sizeX, sizeY, charHeight, charWidth, scale) {
-    this.game = game;
-    this.img = img;
+  static charImg = null;
+  static height = 135;
+  static width = 110;
+
+  static preload() {
+    const game = getGame();
+    Character.charImg = game.loadImage(charSprites);
+  }
+
+  constructor(sizeX, sizeY, scale) {
     this.scale = scale;
     this.sizeX = sizeX;
     this.sizeY = sizeY;
-    this.charHeight = charHeight / scale;
-    this.charWidth = charWidth / scale;
-
+    this.charHeight = Character.height / scale;
+    this.charWidth = Character.width / scale;
     this.currFrame = 0;
 
-    this.colSize = Math.floor(this.img.width / this.sizeX);
-    this.lineSize = Math.floor(this.img.height / this.sizeY);
+    this.colSize = Math.floor(Character.charImg.width / this.sizeX);
+    this.lineSize = Math.floor(Character.charImg.height / this.sizeY);
   }
 
   draw() {
-    const {
-      currFrame,
-      colSize,
-      sizeX,
-      sizeY,
-      img,
-      game,
-      charHeight,
-      charWidth,
-    } = this;
+    const game = getGame();
+    const { currFrame, colSize, sizeX, sizeY, charHeight, charWidth } = this;
 
     let x = (currFrame % colSize) * sizeX;
     let y = Math.floor(currFrame / colSize) * sizeY;
 
     game.image(
-      img,
+      Character.charImg,
       0,
       game.height - charHeight,
       charWidth,
