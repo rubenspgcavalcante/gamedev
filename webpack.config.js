@@ -1,3 +1,4 @@
+const { ProvidePlugin } = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const path = require("path");
 
@@ -41,5 +42,10 @@ module.exports = () => ({
       },
     ],
   },
-  plugins: [new HtmlWebpackPlugin()],
+  plugins: [
+    new ProvidePlugin({
+      p5: "p5",
+    }),
+    new HtmlWebpackPlugin(),
+  ],
 });

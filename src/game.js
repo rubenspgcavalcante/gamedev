@@ -1,5 +1,6 @@
 import P5 from "p5";
 import "p5.sound";
+import "p5.collide2d";
 
 import bgMusic from "./soundtrack/bg-track.mp3";
 import Character from "./objects/Character";
@@ -33,6 +34,10 @@ const getGame = (() => {
       music.loop();
     };
 
+    game.keyPressed = () => {
+      character.keyPressed(game.key);
+    };
+
     game.draw = () => {
       scene.draw();
       scene.animate();
@@ -40,6 +45,10 @@ const getGame = (() => {
       character.animate();
       enemy.draw();
       enemy.animate();
+
+      if (character.isColliding(enemy)) {
+        game.noLoop();
+      }
     };
   };
 

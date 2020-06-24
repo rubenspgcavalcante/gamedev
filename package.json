@@ -19,7 +19,8 @@
   },
   "homepage": "https://github.com/rubenspgcavalcante/imersao-gamedev#readme",
   "dependencies": {
-    "p5": "^1.0.0"
+    "p5": "^1.0.0",
+    "p5.collide2d": "^0.7.0"
   },
   "devDependencies": {
     "@babel/core": "^7.10.3",

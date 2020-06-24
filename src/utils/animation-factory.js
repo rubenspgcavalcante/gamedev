@@ -9,15 +9,11 @@ export default function animationFactory(
 ) {
   const game = getGame();
   let [currentFrame, spriteX, spriteY] = [0, 0, 0];
-
-  const offset = 72;
-  const defaultY = game.height - height - offset;
-
   const cols = Math.floor(img.width / spriteWidth);
   const rows = Math.floor(img.height / spriteHeight);
 
   return {
-    draw(posX = 0, posY = defaultY) {
+    draw(posX = 0, posY = 0) {
       spriteX = (currentFrame % cols) * spriteWidth;
       spriteY = Math.floor(currentFrame / cols) * spriteHeight;
 
