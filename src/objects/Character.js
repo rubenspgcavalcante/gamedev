@@ -1,15 +1,15 @@
 import getGame from "../game";
 import charSprites from "../images/character/running.png";
-import { animationFactory } from "../factories/animation-factory";
-
+import animationFactory from "../utils/animation-factory";
+//132, 162, 220, 270
 export default class Character {
-  static charImg = null;
-  static height = 135;
-  static width = 110;
+  static img = null;
+  static height = 162;
+  static width = 132;
 
   static preload() {
     const game = getGame();
-    Character.charImg = game.loadImage(charSprites);
+    Character.img = game.loadImage(charSprites);
   }
 
   constructor(sizeX, sizeY, scale) {
@@ -20,14 +20,13 @@ export default class Character {
     this.charWidth = Character.width / scale;
     this.currFrame = 0;
 
-    this.colSize = Math.floor(Character.charImg.width / this.sizeX);
-    this.lineSize = Math.floor(Character.charImg.height / this.sizeY);
+    this.colSize = Math.floor(Character.img.width / this.sizeX);
+    this.lineSize = Math.floor(Character.img.height / this.sizeY);
 
     this.animator = animationFactory(
-      Character.charImg,
-      0,
-      this.charHeight,
+      Character.img,
       this.charWidth,
+      this.charHeight,
       sizeX,
       sizeY
     );

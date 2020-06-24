@@ -4,21 +4,22 @@ import "p5.sound";
 import bgMusic from "./soundtrack/bg-track.mp3";
 import Character from "./objects/Character";
 import Scene from "./objects/Scene";
+import Enemy from "./objects/Enemy";
 
 const getGame = (() => {
   let game;
 
   const sketch = (_game) => {
     game = _game;
-    let sceneBg = null;
-    let charImg = null;
     let scene = null;
-    let music = null;
     let character = null;
+    let enemy = null;
+    let music = null;
 
     game.preload = () => {
-      sceneBg = Scene.preload();
-      charImg = Character.preload();
+      Scene.preload();
+      Character.preload();
+      Enemy.preload();
       music = game.loadSound(bgMusic);
     };
 
@@ -26,6 +27,8 @@ const getGame = (() => {
       game.createCanvas(game.windowWidth, game.windowHeight);
       scene = new Scene(6, music);
       character = new Character(220, 270, Scene.getScale());
+      enemy = new Enemy(105, 100, Scene.getScale());
+
       game.frameRate(30);
       music.loop();
     };
@@ -34,6 +37,9 @@ const getGame = (() => {
       scene.draw();
       scene.animate();
       character.draw();
+      character.animate();
+      enemy.draw();
+      enemy.animate();
     };
   };
 

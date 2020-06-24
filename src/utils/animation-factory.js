@@ -1,8 +1,7 @@
 import getGame from "../game";
 
-export function animationFactory(
+export default function animationFactory(
   img,
-  posX,
   width,
   height,
   spriteWidth,
@@ -12,14 +11,14 @@ export function animationFactory(
   let [currentFrame, spriteX, spriteY] = [0, 0, 0];
 
   const offset = 72;
-  const posY = game.height - height - offset;
+  const defaultY = game.height - height - offset;
 
-  const cols = Number(img.width / spriteWidth);
-  const rows = Number(img.height / spriteHeight);
+  const cols = Math.floor(img.width / spriteWidth);
+  const rows = Math.floor(img.height / spriteHeight);
 
   return {
-    draw() {
-      spriteX = currentFrame % (spriteWidth * cols);
+    draw(posX = 0, posY = defaultY) {
+      spriteX = (currentFrame % cols) * spriteWidth;
       spriteY = Math.floor(currentFrame / cols) * spriteHeight;
 
       game.image(
@@ -36,7 +35,11 @@ export function animationFactory(
     },
 
     animate() {
-      currentFrame = currentFrame === cols * rows ? currentFrame + 1 : 0;
+      currentFrame += 1;
+      if (currentFrame === rows * cols - 1) {
+        currentFrame = 0;
+      }
     },
   };
+  1;
 }

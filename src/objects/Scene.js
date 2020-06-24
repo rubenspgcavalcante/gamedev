@@ -2,15 +2,15 @@ import getGame from "../game";
 import forestSprite from "../images/scene/forest.png";
 
 export default class Scene {
-  static bgImg = null;
+  static img = null;
 
   static preload() {
     const game = getGame();
-    Scene.bgImg = game.loadImage(forestSprite);
+    Scene.img = game.loadImage(forestSprite);
   }
 
   static getScale() {
-    return Scene.bgImg.height / Scene.bgImg.width;
+    return Scene.img.height / Scene.img.width;
   }
 
   constructor(speed) {
@@ -22,8 +22,8 @@ export default class Scene {
 
   draw() {
     const game = getGame();
-    game.image(Scene.bgImg, this.x1, 0, game.width, game.height);
-    game.image(Scene.bgImg, this.x2, 0, game.width, game.height);
+    game.image(Scene.img, this.x1, 0, game.width, game.height);
+    game.image(Scene.img, this.x2, 0, game.width, game.height);
   }
 
   animate() {
